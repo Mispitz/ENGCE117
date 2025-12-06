@@ -3,44 +3,25 @@
 void GetSet( int ** , int * ) ;
 
 int main() {
-    int *data, num ;
+    int *data, num;
     GetSet( &data, &num ) ;
+    printf("%d", data[1] ) ;
 
-    for ( int i = 0 ; i < num ; i++ ) {
-        printf("%d\n",data[i]);
-    }
-    if (data != NULL) {
-        free(data);
+    for( int i = 0 ; i < num ; i++ ) {
+        printf("%d", data[ i ] ) ;
     }
 
     return 0 ;
 }
 
 void GetSet( int **data , int *num ) {
-    if ( scanf( "%d" , num ) != 1 ) {
-        printf( "Error" ) ;
+    int i = 0 ;
+
+    if (scanf( "%d" , num ) != 1) {
         return ;
     }
 
-    if ( *num <= 0 ) {
-        printf( "Error" ) ;
-        return ;
+    for( i = 0 ; i < *num ; i++ ) {
+        scanf( "%d" , &data[ i ] ) ;
     }
-
-        int i = 0 ;
-        int *arr ;
-        arr = malloc((size_t)(*num) * sizeof(int));
-        if (arr == NULL) {
-            printf("Error: memory allocation failed\n");
-            *data = NULL;
-            return;
-        }
-
-    for ( i = 0 ; i < *num ; i++ ) {
-        if ( scanf( "%d" , &arr[ i ] ) != 1 ) {
-            arr[ i ] = 0 ;
-        }
-    }
-
-    *data = arr ;
 }
