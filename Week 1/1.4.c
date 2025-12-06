@@ -1,70 +1,43 @@
 #include <stdio.h>
-// ไม่จำเป็นต้องรวม <stdlib.h> เพราะไม่ได้ใช้ malloc
 
-// โปรโตไทป์ฟังก์ชัน:
-// ตอนนี้ getset จะรับตัวชี้ไปยังอาร์เรย์ (int*) และขนาดของอาร์เรย์ (int)
-// ฟังก์ชันนี้จะทำหน้าที่ 'อ่านข้อมูล' และ 'คืนค่า' จำนวนที่อ่านได้จริง (ถ้าจำเป็น)
-int getset(int array_to_fill[], int size); 
+int getset(int[]);
 
 int main()
 {
-    int num;          // ตัวแปรสำหรับเก็บจำนวนองค์ประกอบที่ผู้ใช้ต้องการ
-    
-    // 1. รับจำนวนองค์ประกอบที่ต้องการก่อน
-    printf("ป้อนจำนวนเต็มที่คุณต้องการป้อน (num): ");
 
-    if (scanf("%d", &num) != 1 || num <= 0)
-    {
-        printf("ข้อผิดพลาด: การป้อนจำนวนต้องเป็นจำนวนเต็มบวก.\n");
-        return 1; // คืนค่า 1 เพื่อระบุข้อผิดพลาด
-    }
-    
-    // 2. สร้างอาร์เรย์โดยใช้ VLA (Variable-Length Array) 
-    // อาร์เรย์นี้จะถูกสร้างบน Stack ด้วยขนาดที่กำหนดโดย num
-    int data[num]; 
+    int data, num;
 
-    printf("\n--- เริ่มต้นป้อนข้อมูล ---\n");
-    
-    // 3. เรียกฟังก์ชัน getset เพื่อเติมข้อมูล
-    // เราส่งชื่ออาร์เรย์ (ซึ่งทำหน้าที่เป็นตัวชี้ไปยังองค์ประกอบแรก) และขนาดของมัน
-    int num_filled = getset(data, num);
+    num = getset(&data);
 
-    // 4. แสดงผลข้อมูล
-    if (num_filled > 0)
-    {
-        printf("\n--- ข้อมูลที่คุณป้อนทั้งหมด (%d องค์ประกอบ) ---\n", num_filled);
-        
-        for (int i = 0; i < num_filled; i++)
-        {
-            printf("หมายเลข %d: %d\n", i + 1, data[i]);
-        }
-    } 
-    else 
-    {
-         printf("ไม่สามารถอ่านข้อมูลได้.\n");
-    }
-
-    // ไม่ต้องมี free(data) เพราะไม่ได้ใช้ malloc()
     return 0;
 }
 
-// ฟังก์ชันนี้รับตัวชี้ (ชื่ออาร์เรย์) และขนาด
-int getset(int array_to_fill[], int size)
+int getset(int[])
 {
-    int i;
-    
-    // อ่านข้อมูลจากผู้ใช้เข้าสู่ตัวชี้ array_to_fill ที่รับมาจาก main
-    for (i = 0; i < size; i++)
+
+    int data;
+
+    printf("Press number? : ");
+
+    scanf("%d", &data);
+
+    int arr[data];
+
+    for (int i = 0; i < data; i++)
     {
-        printf("ป้อนหมายเลข %d: ", i + 1);
-        
-        // array_to_fill[i] คือการเข้าถึงหน่วยความจำที่ถูกสร้างใน main
-        if (scanf("%d", &array_to_fill[i]) != 1) 
-        {
-            printf("ข้อผิดพลาดในการอ่านข้อมูลตัวที่ %d. หยุดการป้อนข้อมูล.\n", i + 1);
-            return i; // คืนค่าจำนวนองค์ประกอบที่อ่านได้สำเร็จก่อนเกิดข้อผิดพลาด
-        }
+
+        printf("Enter num %d: ", i + 1);
+
+        scanf("%d", &arr[i]);
     }
-    
-    return size; // คืนจำนวนทั้งหมดที่อ่านได้สำเร็จ
+
+    printf("You entered:\n");
+
+    for (int i = 0; i < data; i++)
+    {
+
+        printf("number %d: %d\n", i + 1, arr[i]);
+    }
+
+    return data;
 }
