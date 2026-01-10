@@ -1,10 +1,11 @@
 #include <stdio.h>
+
 #include <string.h>
 
 struct studentnode {
 
     char name[20];
-    
+
     int age;
 
     char sex;
@@ -12,18 +13,17 @@ struct studentnode {
     float gpa;
 
     struct studentnode *next;
-};
+} ;
 
 void savenode(struct studentnode *child, char n[], int a, char s, float g);
 
-void GoNext2(struct studentnode **walk);
+void gonext1(struct studentnode **walk);
 
-int main() {
+int main(){
 
     struct studentnode *start, *now1, **now2;
 
-    
-    start = new struct studentnode; 
+    start = new struct studentnode;
 
     savenode(start, "one", 6, 'm', 3.11);
 
@@ -43,14 +43,14 @@ int main() {
 
     now2 = &start;
 
-    GoNext2(now2);
+    gonext1(&now1);
 
-    printf("In Main: %s\n", (*now2)->name);
+    printf("%s\n", now1->name);
 
     return 0;
 }
 
-void savenode(struct studentnode *child, char n[], int a, char s, float g) {
+void savenode(struct studentnode *child, char n[], int a, char s, float g){
 
     strcpy(child->name, n);
 
@@ -60,16 +60,20 @@ void savenode(struct studentnode *child, char n[], int a, char s, float g) {
 
     child->gpa = g;
 
-    child->next = NULL;
 }
 
+void gonext1(struct studentnode **walk){
 
-void GoNext2(struct studentnode **walk) {
-   
-    if ((*walk)->next != NULL) {
+    
+    if ( (*walk)->next != NULL ) {
+
         
         *walk = (*walk)->next; 
 
-        printf("%s\n", (*walk)->name); 
+        printf("output:%s\n", (*walk)->name);
+
+    } else {
+
+        printf("End of list\n");
     }
 }

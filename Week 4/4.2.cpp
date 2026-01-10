@@ -7,7 +7,7 @@ int main() {
     *b = 10 ;
     int *c = new int ;
     *c = 20 ;
-
+    
     int **a ;
     go( &a , &b ) ;
     printf( "%d %p %p %p\n" , **a , *a , a , &a ) ;
