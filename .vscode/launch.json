@@ -2,7 +2,7 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "C/C++ Runner: Debug Session",
+      "name": "C/C++ Runner: Run Session",
       "type": "cppdbg",
       "request": "launch",
       "args": [],
@@ -10,6 +10,25 @@
       "externalConsole": true,
       "cwd": "c:/Users/npitz/Documents/GitHub/ENGCE117/Week 4",
       "program": "c:/Users/npitz/Documents/GitHub/ENGCE117/Week 4/build/Debug/outDebug",
+      "MIMode": "gdb",
+      "miDebuggerPath": "gdb",
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        }
+      ]
+    },
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "cppdbg",
+      "request": "launch",
+      "args": [],
+      "stopAtEntry": false,
+      "externalConsole": true,
+      "cwd": "c:/Users/npitz/Documents/GitHub/ENGCE117/Week 4/4.6",
+      "program": "c:/Users/npitz/Documents/GitHub/ENGCE117/Week 4/4.6/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
